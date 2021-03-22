@@ -1,0 +1,4 @@
+let CoverPage =
+{
+    $modalBtn: $("#modalBtn")
+}

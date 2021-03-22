@@ -6,6 +6,9 @@
     <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <title>m120 SBB Billetautomat</title>
+
+    <script src="libs/jquery-3.6.0.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body class="text-center">
@@ -26,13 +29,13 @@
         <h1 class="cover-heading">SBB Online.</h1>
         <p class="lead">Bequem und einfach von zuhause ein Billett lösen.</p>
         <p class="lead">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Jetzt lösen</button>
+            <button type="button" class="btn btn-primary" id="modalBtn">Jetzt lösen</button>
         </p>
     </main>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="mainModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -49,10 +52,8 @@
         </div>
       </div>
 
-
-
-
-    
-    <script src="libs/jquery-3.6.0.min.js"></script>
+    <script src="js/selectors/CoverPageSelector.js"></script>
+    <script src="js/selectors/ModalSelector.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
