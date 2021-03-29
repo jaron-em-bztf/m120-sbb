@@ -1,10 +1,11 @@
 $(document).ready(() => {
-    console.log();
+    //Testing
+    CoverPage.$modalBtn.click();
 });
 
 CoverPage.$modalBtn.click(() => openModal());
 
 function openModal()
 {
-    Modal.bsMain.show();
+    modal = new ModalController();
 }

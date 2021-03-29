@@ -81,3 +81,9 @@ body {
   padding: .75rem 1.25rem;
   font-weight: 700;
 }
+
+/*  Modal */
+
+#mainModal {
+  color: #262626;
+}
