@@ -12,5 +12,11 @@ let ModalTemplates =
         $body: $("#routeTemplate")
         , $from: $("#route-from")
         , $to: $("#route-to")
+    },
+
+    dateTemplate:
+    {
+        $body: $("#dateTemplate")
+        , $datePicker: $("#date")
     }
 }
