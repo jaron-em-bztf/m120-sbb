@@ -42,7 +42,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="mainModal-body">
-            ...
+            
+            <!-- Modal templates -->
+            <div id="routeTemplate" class="d-none">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <input id="route-from" type="text" class="form-control" placeholder="Von">
+                  </div>
+                  <div class="col-1">
+                    <img src="img/arrow-right-square-fill.svg" width="30" height="30">
+                  </div>
+                  <div class="col">
+                    <input id="route-to" type="text"  class="form-control" placeholder="Nach">
+                  </div>  
+                </div>
+              </div>
+            </div>
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary">Weiter</button>
@@ -51,25 +68,11 @@
       </div>
     </div>
     
-    <!-- Modal templates -->
-    <template id="routeTemplate">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col">
-            <input id="route-from" type="text" class="form-control" placeholder="Von">
-          </div>
-          <div class="col-1">
-            <img src="img/arrow-right-square-fill.svg" width="30" height="30">
-          </div>
-          <div class="col">
-            <input id="route-to" type="text"  class="form-control" placeholder="Nach">
-          </div>  
-        </div>
-      </div>
-    </template>
+    
     
     <script src="js/selectors/CoverPageSelector.js"></script>
     <script src="js/selectors/ModalSelector.js"></script>
+    <script src="js/ModalProps.js"></script>
     
     <script src="js/RouteView.js"></script>
     <script src="js/ModalController.js"></script>

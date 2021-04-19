@@ -1,9 +1,8 @@
 class RouteView
 {
-    constructor()
+    constructor(switchTemplate)
     {
         Modal.$title.html("Strecke");
-        Modal.$body.html(ModalTemplates.routeTemplate.$body.html());
-        ModalTemplates.routeTemplate.$from.change(() => console.log("changed"));
+        switchTemplate(ModalTemplates.routeTemplate.$body);
     }
 }
