@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="libs/bootstrap/css/bootstrap-datepicker3.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <title>m120 SBB Billetautomat</title>
   
   <script src="libs/jquery-3.6.0.min.js"></script>
   <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap-datepicker.min.js"></script>
 </head>
 
-<body class="text-center">
-  
+<body class="text-center">  
   <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
       <div class="inner">
@@ -60,14 +61,32 @@
                 </div>
               </div>
             </div>
-
+            
             <!-- Date -->
             <div id="dateTemplate" class="d-none">
               <div class="container">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                <div class="row">
+                  <div class="col text-end">
+                    <p>Reisedatum</p>
                   </div>
+                  <div class="col">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&#128197;</span>
+                      </div>
+                      <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                    </div>
+                  </div>
+                  <div class="col"></div>
+                </div>
+                <div class="row">
+                  <div class="col text-end">
+                    <p>Billetart</p>
+                  </div>
+                  <div class="col">
+
+                  </div>
+                  <div class="col"></div>
                 </div>
               </div>
             </div>
