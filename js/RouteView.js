@@ -1,10 +1,13 @@
 class RouteView
 {
-    constructor(switchTemplate)
+    constructor()
     {
-        Modal.$title.html("Strecke");
         this.setupPropHandling();
-        switchTemplate(ModalTemplates.routeTemplate.$body);
+    }
+    
+    switch(switchTemplate)
+    {
+        switchTemplate(ModalTemplates.routeTemplate);
     }
 
     setupPropHandling()
