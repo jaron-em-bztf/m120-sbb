@@ -21,7 +21,9 @@ let ModalTemplates =
     {
         title: "Datum & Billetart"
         , $body: $("#dateTemplate")
-        
+
         , $datePicker: $("#date")
+        , $travelClass: $("#travelClass")
+        , $firstClassPrice: $("#firstClassPrice")
     }
 }

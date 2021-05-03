@@ -79,14 +79,41 @@
                   </div>
                   <div class="col"></div>
                 </div>
+                
                 <div class="row">
                   <div class="col text-end">
                     <p>Billetart</p>
                   </div>
                   <div class="col">
-
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="wayType" id="oneWayType" value="option1" checked="checked">
+                      <label class="form-check-label" for="inlineRadio1">Einfache Karte</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="wayType" id="twoWayType" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Hin- und Rückfahrt</label>
+                    </div>
                   </div>
                   <div class="col"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col text-end">
+                    <p>Klasse</p>
+                  </div>
+                  <div class="col">
+
+                    <div class="row">
+                      <div class="col text-end"><p>2.</p></div>
+                      <div class="col">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="travelClass">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">1.</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col"><p class="d-none" id="firstClassPrice">+3.60 CHF</p></div>
                 </div>
               </div>
             </div>
