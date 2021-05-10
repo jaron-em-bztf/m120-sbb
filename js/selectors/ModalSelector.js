@@ -40,5 +40,11 @@ let ModalTemplates =
         , $halbTax : $("#halbtaxDiscount")
         , $juniorDiscount : $("#juniorDiscount")
         , $childDiscount : $("#childDiscount")
+    },
+
+    confirmTemplate:
+    {
+        title: "Bestätigung"
+        , $body : $("#confirmTemplate")
     }
 }

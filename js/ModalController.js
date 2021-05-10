@@ -2,9 +2,9 @@ class ModalController
 {
     constructor()
     {
-        this.templates = [ModalTemplates.routeTemplate, ModalTemplates.dateTemplate];
-        this.views = [new RouteView(), new DateView(), new TravellerView()];
-        this.currentView = 1;
+        this.templates = [ModalTemplates.routeTemplate, ModalTemplates.dateTemplate, ModalTemplates.confirmTemplate];
+        this.views = [new RouteView(), new DateView(), new TravellerView(), new ConfirmView()];
+        this.currentView = -1;
         Modal.bsMain.show();
         this.nextView();
         Modal.$nextBtn.click(() => this.nextView());
