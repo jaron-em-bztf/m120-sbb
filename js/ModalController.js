@@ -3,8 +3,8 @@ class ModalController
     constructor()
     {
         this.templates = [ModalTemplates.routeTemplate, ModalTemplates.dateTemplate];
-        this.views = [new RouteView(this.nextView), new DateView(this.nextView)];
-        this.currentView = -1;
+        this.views = [new RouteView(), new DateView(), new TravellerView()];
+        this.currentView = 1;
         Modal.bsMain.show();
         this.nextView();
         Modal.$nextBtn.click(() => this.nextView());
@@ -12,7 +12,9 @@ class ModalController
 
     nextView()
     {
-        this.views[++this.currentView].switch(t => this.switchTemplate(t))// anonymous function to keep context
+        if (this.currentView + 1 >= this.views.length)
+          return;
+          this.views[++this.currentView].switch(t => this.switchTemplate(t))// anonymous function to keep context
     }
 
     switchTemplate(template)

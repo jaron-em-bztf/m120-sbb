@@ -87,3 +87,8 @@ body {
 #mainModal {
   color: #262626;
 }
+
+.s-border {
+  padding: 5px;
+  border: 1px solid lightgrey;
+}
