@@ -10,6 +10,11 @@ class RouteView
         switchTemplate(ModalTemplates.routeTemplate);
     }
 
+    values()
+    {
+        return {Von : ModalTemplates.routeTemplate.$from.val(), Nach : ModalTemplates.routeTemplate.$to.val()};
+    }
+
     setupPropHandling()
     {
         ModalTemplates.routeTemplate.$from.change(() =>

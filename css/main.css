@@ -92,3 +92,11 @@ body {
   padding: 5px;
   border: 1px solid lightgrey;
 }
+
+#mainModal {
+  text-shadow: none;
+}
+
+.text-left {
+  text-align: left;
+}

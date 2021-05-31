@@ -11,6 +11,13 @@ class DateView
         switchTemplate(ModalTemplates.dateTemplate);
     }
 
+    values()
+    {
+        let wayType = $("input[type='radio'][name='wayType']:checked").val();
+        let travelClass = ModalTemplates.dateTemplate.$travelClass.is(':checked') ? "1." : "2.";
+        return {Reisedatum : ModalTemplates.dateTemplate.$datePicker.val(), Art: wayType, Klasse: travelClass};
+    }
+
     initDatePicker()
     {
         let options = {
