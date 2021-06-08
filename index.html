@@ -50,14 +50,20 @@
               <div class="container">
                 <div class="row align-items-center">
                   <div class="col">
-                    <input id="route-from" type="text" class="form-control" placeholder="Von">
+                    <div class="form-floating col-md">
+                      <input type="text" class="form-control" id="route-from" placeholder="Von">
+                      <label for="route-from">Von</label>
+                    </div>
                   </div>
                   <div class="col-1">
                     <img src="img/arrow-right-square-fill.svg" width="30" height="30">
                   </div>
                   <div class="col">
-                    <input id="route-to" type="text"  class="form-control" placeholder="Nach">
-                  </div>  
+                    <div class="form-floating col-md">
+                      <input type="text" class="form-control" id="route-to" placeholder="Nach">
+                      <label for="route-to">Nach</label>
+                    </div>
+                  </div>       
                 </div>
               </div>
             </div>
@@ -123,27 +129,37 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <label for="firstName">Vorname</label>
-                    <input id="firstName" type="text"  class="form-control" placeholder="Vorname">
+                    <div class="form-floating col-md">
+                      <input type="text" class="form-control" id="firstName" placeholder="Vorname">
+                      <label for="firstName">Vorname</label>
+                    </div>
                   </div>
                   <div class="col">
-                    <label for="lastName">Nachname</label>
-                    <input id="lastName" type="text"  class="form-control" placeholder="Nachname">
+                    <div class="form-floating col-md">
+                      <input type="text" class="form-control" id="lastName" placeholder="Nachname">
+                      <label for="lastName">Nachname</label>
+                    </div>
                   </div>
                   <div class="col">
                     <div class="container">
                       <div class="row align-items-center">
                         <div class="col">
-                          <label for="birthDay">Tag</label>
-                          <input id="birthDay" type="number" min="1" max="31" class="form-control" placeholder="TT" value="01">
+                          <div class="form-floating col-md">
+                            <input type="number" class="form-control" min="1" max="31" id="birthDay" placeholder="Tag" value="01">
+                            <label for="birthDay">Tag</label>
+                          </div>
                         </div>
                         <div class="col">
-                          <label for="birtMonth">Monat</label>
-                          <input id="birthMonth" type="number" min="1" max="12" class="form-control" placeholder="MM" value="01">
+                          <div class="form-floating col-md">
+                            <input type="number" class="form-control" min="1" max="12" id="birthMonth" placeholder="Monat" value="01">
+                            <label for="birthMonth">Monat</label>
+                          </div>
                         </div>
                         <div class="col">
-                          <label for="birtYear">Jahr</label>
-                          <input id="birthYear" type="number" min="1920" max="2021" class="form-control" placeholder="JJJJ" value="2000">
+                          <div class="form-floating col-md">
+                            <input type="number" class="form-control" min="1920" max="2021" id="birthYear" placeholder="Jahr" value="2000">
+                            <label for="birthYear">Monat</label>
+                          </div>
                         </div>
                       </div>
                     </div>
