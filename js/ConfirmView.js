@@ -29,7 +29,7 @@ class ConfirmView
     insertList(title, list)
     {  
         let html = "<div class='modal-header'><h6 class='modal-title'>" + title + 
-            "</h6><img src='img/edit.png' width='20' height='20'></div><ul>";
+            "</h6><img class='clickable' id='" + title + "-edit' src='img/edit.png' width='20' height='20'></div><ul>";
         for (const key of Object.keys(list)) {
             html += "<li>" + key + ": ";
             if (list[key] != "")

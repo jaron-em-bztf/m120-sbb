@@ -11,9 +11,13 @@ class ModalController
         let confirm = new ConfirmView(route, date, traveller);
         this.views = [route, date, traveller, confirm];
         this.currentView = -1; // -1
-        Modal.bsMain.show();
         this.nextView();
         Modal.$nextBtn.click(() => this.nextView());
+    }
+    
+    show()
+    {
+        Modal.bsMain.show();
     }
 
     nextView()

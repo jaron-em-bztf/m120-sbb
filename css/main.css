@@ -82,6 +82,10 @@ body {
   font-weight: 700;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 /*  Modal */
 
 #mainModal {
