@@ -10,6 +10,24 @@ class TravellerView
         switchTemplate(ModalTemplates.travellerTemplate);
     }
 
+    values()
+    {
+        let t = ModalTemplates.travellerTemplate;
+        let discounts = (t.$halbTax.is(":checked")) ? t.$halbTax.val() + ", ": "";
+        discounts += (t.$juniorDiscount.is(":checked")) ? t.$juniorDiscount.val() + ", ": "";
+        discounts += (t.$childDiscount.is(":checked")) ? t.$childDiscount.val() + ", ": "";
+        // remove trailing comma or format empty value
+        discounts = (discounts.length == 0) ? discounts = "-" : discounts.substring(0, discounts.length - 2);
+
+        return {
+            Vorname : t.$firstName.val(),
+            Nachname : t.$lastName.val(),
+            Geburtsdatum : t.$birthDay.val() + "." + 
+                t.$birthMonth.val() + "." + t.$birthYear.val(),
+            Ermässigungen : discounts
+        }
+    }
+
     initDiscounts()
     {
         let $noDiscount = ModalTemplates.travellerTemplate.$noDiscount;

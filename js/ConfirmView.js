@@ -18,6 +18,7 @@ class ConfirmView
     {
         this.insertList(ModalTemplates.routeTemplate.title, this.routeView.values());
         this.insertList(ModalTemplates.dateTemplate.title, this.dateView.values());
+        this.insertList(ModalTemplates.travellerTemplate.title, this.travellerView.values());
     }
 
     clearData()
