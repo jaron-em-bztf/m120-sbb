@@ -4,6 +4,8 @@ class DateView
     {
         this.initDatePicker();
         this.initTravelClass();
+        this.id = ModalTemplates.dateTemplate.id;
+        this.template = ModalTemplates.dateTemplate;
     }
     
     switch(switchTemplate)

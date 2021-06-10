@@ -10,7 +10,8 @@ let ModalTemplates =
 {
     routeTemplate:
     {
-        title: "Strecke"
+        id: 1
+        , title: "Strecke"
         , $body: $("#routeTemplate")
 
         , $from: $("#route-from")
@@ -19,7 +20,8 @@ let ModalTemplates =
 
     dateTemplate:
     {
-        title: "Datum & Billetart"
+        id: 2
+        , title: "Datum & Billetart"
         , $body: $("#dateTemplate")
 
         , $datePicker: $("#date")
@@ -29,7 +31,8 @@ let ModalTemplates =
 
     travellerTemplate:
     {
-        title: "Reisende/r"
+        id: 3
+        , title: "Reisende/r"
         , $body : $("#travellerTemplate")
         , $firstName : $("#firstName")
         , $lastName : $("#lastName")
@@ -44,7 +47,8 @@ let ModalTemplates =
 
     confirmTemplate:
     {
-        title: "Bestätigung"
+        id: 4
+        , title: "Bestätigung"
         , $body : $("#confirmTemplate")
         , $routeSummary : $("#routeSummary")
     }

@@ -3,6 +3,8 @@ class TravellerView
     constructor()
     {
         this.initDiscounts();
+        this.id = ModalTemplates.travellerTemplate.id;
+        this.template = ModalTemplates.travellerTemplate;
     }
     
     switch(switchTemplate)

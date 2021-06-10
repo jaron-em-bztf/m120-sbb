@@ -3,6 +3,8 @@ class RouteView
     constructor()
     {
         this.setupPropHandling();
+        this.id = ModalTemplates.routeTemplate.id;
+        this.template = ModalTemplates.routeTemplate;
     }
     
     switch(switchTemplate)
