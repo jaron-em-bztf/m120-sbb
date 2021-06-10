@@ -1,20 +1,14 @@
-class TravellerView
+class TravellerView extends AbstractView
 {
     constructor()
     {
+        super(ModalTemplates.travellerTemplate);
         this.initDiscounts();
-        this.id = ModalTemplates.travellerTemplate.id;
-        this.template = ModalTemplates.travellerTemplate;
-    }
-    
-    switch(switchTemplate)
-    {
-        switchTemplate(ModalTemplates.travellerTemplate);
     }
 
     values()
     {
-        let t = ModalTemplates.travellerTemplate;
+        let t = this.template;
         let discounts = (t.$halbTax.is(":checked")) ? t.$halbTax.val() + ", ": "";
         discounts += (t.$juniorDiscount.is(":checked")) ? t.$juniorDiscount.val() + ", ": "";
         discounts += (t.$childDiscount.is(":checked")) ? t.$childDiscount.val() + ", ": "";
@@ -32,28 +26,28 @@ class TravellerView
 
     initDiscounts()
     {
-        let $noDiscount = ModalTemplates.travellerTemplate.$noDiscount;
+        let $noDiscount = this.template.$noDiscount;
         $noDiscount.change((e) => { 
             if(!$(e.target).is(":checked"))
                 return;
-            ModalTemplates.travellerTemplate.$childDiscount.prop("checked", false);
-            ModalTemplates.travellerTemplate.$halbTax.prop("checked", false);
-            ModalTemplates.travellerTemplate.$juniorDiscount.prop("checked", false);
+            this.template.$childDiscount.prop("checked", false);
+            this.template.$halbTax.prop("checked", false);
+            this.template.$juniorDiscount.prop("checked", false);
         });
-        ModalTemplates.travellerTemplate.$childDiscount.change((e) => {
+        this.template.$childDiscount.change((e) => {
             if($(e.target).is(":checked"))
                 $noDiscount.prop("checked", false);
         });
 
-        ModalTemplates.travellerTemplate.$halbTax.change((e) => {
+        this.template.$halbTax.change((e) => {
             if($(e.target).is(":checked"))
                 $noDiscount.prop("checked", false);
         });
 
-        ModalTemplates.travellerTemplate.$juniorDiscount.change((e) => {
+        this.template.$juniorDiscount.change((e) => {
             if($(e.target).is(":checked"))
                 $noDiscount.prop("checked", false);
         });
-        ModalTemplates.travellerTemplate.$noDiscount.prop('checked', true);
+        this.template.$noDiscount.prop('checked', true);
     }
 }

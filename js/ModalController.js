@@ -2,9 +2,6 @@ class ModalController
 {
     constructor()
     {
-        this.templates = [ModalTemplates.routeTemplate, ModalTemplates.dateTemplate, 
-            ModalTemplates.travellerTemplate, ModalTemplates.confirmTemplate];
-        
         let route = new RouteView();
         let date = new DateView();
         let traveller = new TravellerView();
@@ -14,10 +11,9 @@ class ModalController
         this.editInProgress = false;
         this.nextView();
         Modal.$nextBtn.click(() => {
-            if (this.editInProgress) {
-                this.editInProgress = false;
-                this.views[this.views.length - 1].switch(t => this.switchTemplate(t)); // to last view
-            } else
+            if (this.editInProgress)
+                this.finishEdit();
+            else
                 this.nextView()
         });
     }
@@ -31,14 +27,21 @@ class ModalController
     {
         if (this.currentView + 1 >= this.views.length)
           return;
-        this.views[++this.currentView].switch(t => this.switchTemplate(t))// anonymous function to keep context
+        this.switchToView(this.views[++this.currentView]);
     }
 
-    switchTemplate(template)
+    finishEdit()
     {
-        this.templates.forEach(t => $(t.$body).addClass("d-none"));
-        template.$body.removeClass("d-none");
-        Modal.$title.html(template.title);
+        this.editInProgress = false;
+        this.switchToView(this.views[this.views.length -1]); // back to the last view
+    }
+
+    switchToView(view)
+    {
+        this.views.forEach(v => v.template.$body.addClass("d-none"));
+        view.onView();
+        view.template.$body.removeClass("d-none");
+        Modal.$title.html(view.title);
     }
 
     editCallback(id)
@@ -49,7 +52,7 @@ class ModalController
         
             Modal.$nextBtn.html("Fertig");
             this.editInProgress = true;
-            view.switch(t => this.switchTemplate(t));
+            this.switchToView(view);
         });
     }
 }

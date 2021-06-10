@@ -1,32 +1,30 @@
-class ConfirmView
+class ConfirmView extends AbstractView
 {
     constructor(routeView, dateView, travellerView, editCallback)
     {
+        super(ModalTemplates.confirmTemplate);
         this.routeView = routeView;
         this.dateView = dateView;
         this.travellerView = travellerView;
         this.editCallback = editCallback
-        this.id = ModalTemplates.confirmTemplate.id;
-        this.template = ModalTemplates.confirmTemplate;
     }
 
-    switch(switchTemplate)
+    onView()
     {
         this.clearData();
         this.updateData();
-        switchTemplate(ModalTemplates.confirmTemplate);
     }
 
     updateData()
     {
-        this.insertList(ModalTemplates.routeTemplate.id, ModalTemplates.routeTemplate.title, this.routeView.values());
-        this.insertList(ModalTemplates.dateTemplate.id, ModalTemplates.dateTemplate.title, this.dateView.values());
-        this.insertList(ModalTemplates.travellerTemplate.id, ModalTemplates.travellerTemplate.title, this.travellerView.values());
+        this.insertList(this.routeView.id, this.routeView.title, this.routeView.values());
+        this.insertList(this.dateView.id, this.dateView.title, this.dateView.values());
+        this.insertList(this.travellerView.id, this.travellerView.title, this.travellerView.values());
     }
 
     clearData()
     {
-        ModalTemplates.confirmTemplate.$routeSummary.html("");
+        this.template.$routeSummary.html("");
     }
 
     insertList(id, title, list)
@@ -43,7 +41,7 @@ class ConfirmView
             html += "</li>";
         }
         html += "</ul>";
-        ModalTemplates.confirmTemplate.$routeSummary.append(html);
+        this.template.$routeSummary.append(html);
         $("#" + editId).click(() => this.editCallback(id));
     }
 }
