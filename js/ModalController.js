@@ -9,25 +9,57 @@ class ModalController
         this.views = [route, date, traveller, confirm];
         this.currentView = -1;
         this.editInProgress = false;
+
+        Modal.$prevBtn.addClass("d-none");
         this.nextView();
         Modal.$nextBtn.click(() => {
             if (this.editInProgress)
                 this.finishEdit();
             else
-                this.nextView()
+                this.nextView();
         });
+
+        Modal.$prevBtn.click(() => this.previousView());
     }
     
     show()
     {
         Modal.bsMain.show();
     }
+    
+    updatePreviousBtnVisibility()
+    {
+        if (this.currentView > 0 && !this.editInProgress)
+            Modal.$prevBtn.removeClass("d-none");
+        else
+            Modal.$prevBtn.addClass("d-none");
+    }
+
+    updateNextBtnText()
+    {
+        if (this.currentView == this.views.length -1)
+            Modal.$nextBtn.html("Kauf abschliessen");
+        else if (this.editInProgress)
+            Modal.$nextBtn.html("Fertig");
+        else
+            Modal.$nextBtn.html("Weiter");
+
+    }
+
+    previousView()
+    {
+        if(this.currentView < 1)
+            return;
+        this.currentView--;
+        this.switchToView(this.views[this.currentView]);
+    }
 
     nextView()
     {
         if (this.currentView + 1 >= this.views.length)
-          return;
-        this.switchToView(this.views[++this.currentView]);
+            return;
+        this.currentView++;
+        this.switchToView(this.views[this.currentView]);
     }
 
     finishEdit()
@@ -38,10 +70,14 @@ class ModalController
 
     switchToView(view)
     {
-        this.views.forEach(v => v.template.$body.addClass("d-none"));
+        this.views.forEach(v => v.template.$body.addClass("d-none")); // hide all views
+
+        this.currentView = this.views.indexOf(view);
+        this.updatePreviousBtnVisibility();
+        this.updateNextBtnText();
         view.onView();
-        view.template.$body.removeClass("d-none");
         Modal.$title.html(view.title);
+        view.template.$body.removeClass("d-none");
     }
 
     editCallback(id)
@@ -50,7 +86,6 @@ class ModalController
             if (view.id != id)
                 return;
         
-            Modal.$nextBtn.html("Fertig");
             this.editInProgress = true;
             this.switchToView(view);
         });

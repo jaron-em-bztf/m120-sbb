@@ -4,6 +4,7 @@ let Modal =
     , $title: $("#staticBackdropLabel")
     , $body: $("#mainModal-body")
     , $nextBtn: $("#next")
+    , $prevBtn: $("#previous")
 }
 
 let ModalTemplates =
