@@ -11,6 +11,7 @@
   <script src="libs/jquery-3.6.0.min.js"></script>
   <script src="libs/bootstrap/js/bootstrap.min.js"></script>
   <script src="libs/bootstrap/js/bootstrap-datepicker.min.js"></script>
+  <script src="libs/typeahead.jquery.min.js"></script>
 </head>
 
 <body class="text-center">  
@@ -51,8 +52,7 @@
                 <div class="row align-items-center">
                   <div class="col">
                     <div class="form-floating col-md">
-                      <input type="text" class="form-control" id="route-from" placeholder="Von">
-                      <label for="route-from">Von</label>
+                      <input type="text" class="form-control typeahead" id="route-from" placeholder="Von">
                     </div>
                   </div>
                   <div class="col-1">
@@ -60,8 +60,7 @@
                   </div>
                   <div class="col">
                     <div class="form-floating col-md">
-                      <input type="text" class="form-control" id="route-to" placeholder="Nach">
-                      <label for="route-to">Nach</label>
+                      <input type="text" class="form-control typeahead" id="route-to" placeholder="Nach">
                     </div>
                   </div>       
                 </div>
@@ -209,6 +208,8 @@
     
     <script src="js/selectors/CoverPageSelector.js"></script>
     <script src="js/selectors/ModalSelector.js"></script>
+
+    <script src="js/TestDataSet.js"></script>
     
     <script src="js/AbstractView.js"></script>
     <script src="js/RouteView.js"></script>
