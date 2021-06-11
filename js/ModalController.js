@@ -58,8 +58,8 @@ class ModalController
     {
         if (this.currentView + 1 >= this.views.length)
             return;
-        this.currentView++;
-        this.switchToView(this.views[this.currentView]);
+        //this.currentView++;
+        this.switchToView(this.views[this.currentView + 1]);
     }
 
     finishEdit()
@@ -70,6 +70,9 @@ class ModalController
 
     switchToView(view)
     {
+        if (this.views[this.currentView] && !this.views[this.currentView].validate())
+            return;
+
         this.views.forEach(v => v.template.$body.addClass("d-none")); // hide all views
 
         this.currentView = this.views.indexOf(view);

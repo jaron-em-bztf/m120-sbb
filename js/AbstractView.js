@@ -11,6 +11,11 @@ class AbstractView
     {
     }
 
+    validate()
+    {
+        return true;
+    }
+
     values()
     {
         return {};
