@@ -7,7 +7,7 @@ class ModalController
         let traveller = new TravellerView();
         let confirm = new ConfirmView(route, date, traveller, id => this.editCallback(id)); // keep context
         this.views = [route, date, traveller, confirm];
-        this.currentView = 0;
+        this.currentView = 1;
         this.editInProgress = false;
 
         Modal.$prevBtn.addClass("d-none");
@@ -50,7 +50,7 @@ class ModalController
     {
         if(this.currentView < 1)
             return;
-        this.switchToView(this.views[this.currentView - 1]);
+        this.switchToView(this.views[this.currentView - 1], true);
     }
 
     nextView(force = false)
