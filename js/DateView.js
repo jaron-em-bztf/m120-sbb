@@ -7,6 +7,18 @@ class DateView extends AbstractView
         this.initTravelClass();
     }
 
+    validate()
+    {
+        let valid = true;
+        if(this.template.$datePicker.val().length == 0) { // datePicker fills invalid values automatically
+            this.template.$datePicker.addClass("errorHighlight");
+            valid = false;
+        } else
+            this.template.$datePicker.removeClass("errorHighlight");
+
+        return valid;
+    }
+
     values()
     {
         let wayType = $("input[type='radio'][name='wayType']:checked").val();

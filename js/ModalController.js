@@ -7,11 +7,11 @@ class ModalController
         let traveller = new TravellerView();
         let confirm = new ConfirmView(route, date, traveller, id => this.editCallback(id)); // keep context
         this.views = [route, date, traveller, confirm];
-        this.currentView = -1;
+        this.currentView = 0;
         this.editInProgress = false;
 
         Modal.$prevBtn.addClass("d-none");
-        this.nextView();
+        this.nextView(true);
         Modal.$nextBtn.click(() => {
             if (this.editInProgress)
                 this.finishEdit();
@@ -50,16 +50,14 @@ class ModalController
     {
         if(this.currentView < 1)
             return;
-        this.currentView--;
-        this.switchToView(this.views[this.currentView]);
+        this.switchToView(this.views[this.currentView - 1]);
     }
 
-    nextView()
+    nextView(force = false)
     {
         if (this.currentView + 1 >= this.views.length)
             return;
-        //this.currentView++;
-        this.switchToView(this.views[this.currentView + 1]);
+        this.switchToView(this.views[this.currentView + 1], force);
     }
 
     finishEdit()
@@ -68,9 +66,9 @@ class ModalController
         this.switchToView(this.views[this.views.length -1]); // back to the last view
     }
 
-    switchToView(view)
+    switchToView(view, force = false)
     {
-        if (this.views[this.currentView] && !this.views[this.currentView].validate())
+        if (!force && this.views[this.currentView] && !this.views[this.currentView].validate())
             return;
 
         this.views.forEach(v => v.template.$body.addClass("d-none")); // hide all views
