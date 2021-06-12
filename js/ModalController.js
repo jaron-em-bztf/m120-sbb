@@ -76,9 +76,9 @@ class ModalController
         this.currentView = this.views.indexOf(view);
         this.updatePreviousBtnVisibility();
         this.updateNextBtnText();
-        view.onView();
         Modal.$title.html(view.title);
         view.template.$body.removeClass("d-none");
+        view.onView();
     }
 
     editCallback(id)

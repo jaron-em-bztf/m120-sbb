@@ -3,31 +3,14 @@ class RouteView extends AbstractView
     constructor()
     {
         super(ModalTemplates.routeTemplate);
+        this.initAutoComplete();
+        this.initConvenience();
+    }
 
-        let autoComplete = function(stations) {
-            return function findMatches(query, callback) {
-              let res, regex;
-              res = [];
-              regex = new RegExp(query, 'i');
-              $.each(stations, function(i, str) {
-                if (regex.test(str["name"])) {
-                  res.push(str["name"]);
-                }
-              });
-          
-              callback(res);
-            };
-          };
-          
-          $('.typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-          },
-          {
-            name: 'Stations',
-            source: autoComplete(TestDataSet.stations)
-        });
+    onView()
+    {
+      // delay because bootstrap animation removes focus upon opening
+      setTimeout(() => ModalTemplates.routeTemplate.$from.focus(), 500); 
     }
 
     validate()
@@ -51,5 +34,48 @@ class RouteView extends AbstractView
     values()
     {
         return {Von : this.template.$from.val(), Nach : this.template.$to.val()};
+    }
+
+    initConvenience()
+    {
+      this.template.$from.on('keyup', e => {
+        if (e.keyCode === 13 || e.keyCode === 9) { // Enter or tab
+            ModalTemplates.routeTemplate.$to.focus();
+        }
+      });
+
+      this.template.$to.on('keyup', e => {
+        if (e.keyCode === 13 || e.keyCode === 9) { // Enter or tab
+            Modal.$nextBtn.focus();
+        }
+      });
+    }
+
+    initAutoComplete()
+    {
+      let autoComplete = function(stations) {
+        return function findMatches(query, callback) {
+          let res, regex;
+          res = [];
+          regex = new RegExp(query, 'i');
+          $.each(stations, (i, station) => {
+            if (regex.test(station)) {
+              res.push(station);
+            }
+          });
+      
+          callback(res);
+        };
+      };
+      
+      $('.typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'Stations',
+        source: autoComplete(TestDataSet.stationNames())
+      });    
     }
 }

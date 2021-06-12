@@ -11,6 +11,11 @@ class TravellerView extends AbstractView
         this.updateBirthDate();
     }
 
+    onView()
+    {
+        this.template.$firstName.focus();
+    }
+
     validate()
     {
         let valid = true;

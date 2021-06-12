@@ -7,6 +7,11 @@ class DateView extends AbstractView
         this.initTravelClass();
     }
 
+    onView()
+    {
+        this.template.$datePicker.focus();
+    }
+
     validate()
     {
         let valid = true;
@@ -38,12 +43,21 @@ class DateView extends AbstractView
 
     initTravelClass()
     {
-        this.template.$travelClass.change((e) => {
-            let isChecked = $(e.target).is(":checked")
-            if(isChecked)
+        let onChange = () => {
+            if($(this.template.$travelClass).is(":checked"))
                 this.template.$firstClassPrice.removeClass("d-none");
             else
                 this.template.$firstClassPrice.addClass("d-none");
-        }); 
+        };
+
+        this.template.$travelClass.change(() => onChange()); 
+
+        // toggle travel class with arrows
+        this.template.$travelClass.on('keyup', e => {
+            if (e.keyCode === 39 || e.keyCode === 37) { // Right arrow
+                ModalTemplates.dateTemplate.$travelClass.prop("checked", e.keyCode === 39);
+                onChange();
+            }
+        });
     }
 }
