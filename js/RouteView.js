@@ -4,14 +4,14 @@ class RouteView extends AbstractView
     {
         super(ModalTemplates.routeTemplate);
 
-        let autoComplete = function(strs) {
+        let autoComplete = function(stations) {
             return function findMatches(query, callback) {
               let res, regex;
               res = [];
               regex = new RegExp(query, 'i');
-              $.each(strs, function(i, str) {
-                if (regex.test(str)) {
-                  res.push(str);
+              $.each(stations, function(i, str) {
+                if (regex.test(str["name"])) {
+                  res.push(str["name"]);
                 }
               });
           
