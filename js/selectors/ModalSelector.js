@@ -37,6 +37,8 @@ let ModalTemplates =
         , $travelClass: $("#travelClass")
         , $classPriceCol: $("#classPriceCol")
         , $firstClassPrice: $("#firstClassPrice")
+        , $oneWayType: $("#oneWayType")
+        , $twoWayType: $("#twoWayType")
     },
 
     travellerTemplate:

@@ -39,6 +39,11 @@ class DateView extends AbstractView
         return (this.template.$travelClass.is(":checked")) ? this.firstClassPrice : 0.0;
     }
 
+    typeMultiplication()
+    {
+        return (this.template.$oneWayType.is(":checked")) ? 1.0 : 2.0;
+    }
+
     initDatePicker()
     {
         let options = {
@@ -51,8 +56,9 @@ class DateView extends AbstractView
 
     initTravelClass()
     {
-        this.updatePrice = () => { 
-            this.firstClassPrice = (Math.ceil(this.priceGetter()*0.2*20)/20).toFixed(2);
+        this.updatePrice = () => {
+            let multi = (this.template.$oneWayType.is(":checked")) ? 1.0 : 2.0;
+            this.firstClassPrice = (Math.ceil(this.priceGetter()*0.2*multi*20)/20).toFixed(2);
             this.template.$firstClassPrice.html(this.firstClassPrice); // first class price: price * 0.2
         }
 
@@ -65,6 +71,8 @@ class DateView extends AbstractView
             }
         };
 
+        this.template.$oneWayType.change(() => this.updatePrice());
+        this.template.$twoWayType.change(() => this.updatePrice());
         this.template.$travelClass.change(() => onChange()); 
 
         // toggle travel class with arrows

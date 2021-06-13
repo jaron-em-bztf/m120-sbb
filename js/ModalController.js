@@ -24,7 +24,8 @@ class ModalController
     show()
     {
         Modal.bsMain.show();
-        this.nextView(true);
+        if (this.currentView == -1)
+            this.nextView(true);
     }
     
     updatePreviousBtnVisibility()

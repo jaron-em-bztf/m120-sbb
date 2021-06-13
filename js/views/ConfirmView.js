@@ -26,6 +26,7 @@ class ConfirmView extends AbstractView
     updatePrice()
     {
         let price = parseFloat(this.routeView.price);
+        price *= parseFloat(this.dateView.typeMultiplication()); // one or both ways
         price += parseFloat(this.dateView.classPriceAddition());
         price *= parseFloat(this.travellerView.discountMultiplication());
         price = (Math.ceil(price*20)/20).toFixed(2); // round to .05
