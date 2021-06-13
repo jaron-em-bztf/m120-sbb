@@ -6,7 +6,7 @@ class DateView extends AbstractView
         this.initDatePicker();
         this.initTravelClass();
         this.priceGetter = priceGetter;
-        this.firstClassPrice = 0;
+        this.firstClassPrice = 0.0;
     }
 
     onView()
@@ -34,6 +34,11 @@ class DateView extends AbstractView
         return {Reisedatum : this.template.$datePicker.val(), Art: wayType, Klasse: travelClass};
     }
 
+    classPriceAddition()
+    {
+        return (this.template.$travelClass.is(":checked")) ? this.firstClassPrice : 0.0;
+    }
+
     initDatePicker()
     {
         let options = {
@@ -52,7 +57,7 @@ class DateView extends AbstractView
         }
 
         let onChange = () => {
-            if($(this.template.$travelClass).is(":checked")) {
+            if(this.template.$travelClass.is(":checked")) {
                 this.template.$classPriceCol.removeClass("d-none");
                 this.updatePrice();
             } else {

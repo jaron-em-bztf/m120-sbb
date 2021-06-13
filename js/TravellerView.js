@@ -56,6 +56,21 @@ class TravellerView extends AbstractView
         }
     }
 
+    discountMultiplication()
+    {
+        let t = this.template;
+        if (t.$halbTax.is(":checked"))
+            return 0.5;
+        
+        if (t.$juniorDiscount.is(":checked") && t.$childDiscount.is(":checked"))
+            return 0.2;
+
+        if (t.$juniorDiscount.is(":checked") || t.$childDiscount.is(":checked"))
+            return 0.3;
+
+        return 1;
+    }
+
     initDiscounts()
     {
         let $noDiscount = this.template.$noDiscount;

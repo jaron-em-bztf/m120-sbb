@@ -55,5 +55,6 @@ let ModalTemplates =
         , title: "Bestätigung"
         , $body : $("#confirmTemplate")
         , $routeSummary : $("#routeSummary")
+        , $finalPrice : $("#finalPrice")
     }
 }
