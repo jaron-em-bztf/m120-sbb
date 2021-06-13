@@ -7,6 +7,11 @@ let Modal =
     , $prevBtn: $("#previous")
 }
 
+let ConfirmModal =
+{
+    bsMain: new bootstrap.Modal(document.getElementById('confirmModal'))
+}
+
 let ModalTemplates =
 {
     routeTemplate:

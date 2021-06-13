@@ -92,17 +92,14 @@ body {
 
 /*  Modal */
 
-#mainModal {
+.modalStyle {
   color: #262626;
+  text-shadow: none;
 }
 
 .s-border {
   padding: 5px;
   border: 1px solid lightgrey;
-}
-
-#mainModal {
-  text-shadow: none;
 }
 
 .text-left {
