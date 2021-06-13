@@ -27,8 +27,13 @@ body {
   -webkit-box-pack: center;
   justify-content: center;
   color: #fff;
+  text-shadow: 5px;
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  background-image: url("/img/backdrop.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .cover-container {
@@ -63,6 +68,10 @@ body {
 .nav-masthead .active {
   color: #fff;
   border-bottom-color: #fff;
+}
+
+.background-img {
+  background-image: "/img/backdrop.jpeg";
 }
 
 @media (min-width: 48em) {

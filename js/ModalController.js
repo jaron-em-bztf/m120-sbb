@@ -7,11 +7,10 @@ class ModalController
         let traveller = new TravellerView();
         let confirm = new ConfirmView(route, date, traveller, id => this.editCallback(id)); // keep context
         this.views = [route, date, traveller, confirm];
-        this.currentView = 2;
+        this.currentView = -1;
         this.editInProgress = false;
 
         Modal.$prevBtn.addClass("d-none");
-        this.nextView(true);
         Modal.$nextBtn.click(() => {
             if (this.editInProgress)
                 this.finishEdit();
@@ -25,6 +24,7 @@ class ModalController
     show()
     {
         Modal.bsMain.show();
+        this.nextView(true);
     }
     
     updatePreviousBtnVisibility()
