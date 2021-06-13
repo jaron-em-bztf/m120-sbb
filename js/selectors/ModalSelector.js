@@ -10,6 +10,7 @@ let Modal =
 let ConfirmModal =
 {
     bsMain: new bootstrap.Modal(document.getElementById('confirmModal'))
+    , $modal: $("#confirmModal")
 }
 
 let ModalTemplates =

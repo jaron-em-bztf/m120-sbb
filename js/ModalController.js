@@ -58,6 +58,9 @@ class ModalController
         if (this.currentView + 1 >= this.views.length) {
             Modal.bsMain.hide();
             ConfirmModal.bsMain.show();
+            ConfirmModal.$modal.on('hidden.bs.modal', function () {
+                location.reload();
+            });
             return;
         }
         this.switchToView(this.views[this.currentView + 1], force);
