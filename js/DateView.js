@@ -1,15 +1,18 @@
 class DateView extends AbstractView
 {
-    constructor()
+    constructor(priceGetter)
     {
         super(ModalTemplates.dateTemplate);
         this.initDatePicker();
         this.initTravelClass();
+        this.priceGetter = priceGetter;
+        this.firstClassPrice = 0;
     }
 
     onView()
     {
         this.template.$datePicker.focus();
+        this.updatePrice();
     }
 
     validate()
@@ -43,11 +46,18 @@ class DateView extends AbstractView
 
     initTravelClass()
     {
+        this.updatePrice = () => { 
+            this.firstClassPrice = (Math.ceil(this.priceGetter()*0.2*20)/20).toFixed(2);
+            this.template.$firstClassPrice.html(this.firstClassPrice); // first class price: price * 0.2
+        }
+
         let onChange = () => {
-            if($(this.template.$travelClass).is(":checked"))
-                this.template.$firstClassPrice.removeClass("d-none");
-            else
-                this.template.$firstClassPrice.addClass("d-none");
+            if($(this.template.$travelClass).is(":checked")) {
+                this.template.$classPriceCol.removeClass("d-none");
+                this.updatePrice();
+            } else {
+                this.template.$classPriceCol.addClass("d-none");
+            }
         };
 
         this.template.$travelClass.change(() => onChange()); 

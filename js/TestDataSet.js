@@ -15,4 +15,12 @@ class TestDataSet
       let regex = new RegExp(this.stationNames().join("|"), "i"); // arbitrary delim
       return regex.test(key);
     }
+
+    static coords(key)
+    {
+      for (let e of this.stations) {
+        if (e["name"].toLowerCase() == key.toLowerCase())
+          return e.geopos;
+      }
+    }
 }

@@ -3,8 +3,12 @@ class RouteView extends AbstractView
     constructor()
     {
         super(ModalTemplates.routeTemplate);
+
+        this.price = 0;
+
         this.initAutoComplete();
         this.initConvenience();
+        this.initPriceCalculation();
     }
 
     onView()
@@ -79,5 +83,27 @@ class RouteView extends AbstractView
         name: 'Stations',
         source: autoComplete(TestDataSet.stationNames())
       });    
+    }
+
+    initPriceCalculation()
+    {
+      let calc = () => {
+        let fromCoords = TestDataSet.coords(this.template.$from.val());
+        let toCoords = TestDataSet.coords(this.template.$to.val());
+        if (fromCoords === undefined || toCoords === undefined) {
+          this.template.$priceLabel.addClass("invisible");
+          return;
+        }
+        
+        let dist = Math.abs(fromCoords["long"] - toCoords["long"]) + Math.abs(fromCoords["lat"] - toCoords["lat"]);
+        this.price = (Math.ceil(dist*18*20)/20).toFixed(2); // price = dist * 18
+        this.template.$priceLabel.removeClass("invisible");
+        this.template.$price.html(this.price);
+      };
+
+      this.template.$from.on("input", calc);
+      this.template.$to.on("input", calc);
+      this.template.$from.on("change", calc);
+      this.template.$to.on("change", calc);
     }
 }

@@ -17,6 +17,8 @@ let ModalTemplates =
 
         , $from: $("#route-from")
         , $to: $("#route-to")
+        , $priceLabel: $("#priceCHF")
+        , $price: $("#priceNumber")
     },
 
     dateTemplate:
@@ -27,6 +29,7 @@ let ModalTemplates =
 
         , $datePicker: $("#date")
         , $travelClass: $("#travelClass")
+        , $classPriceCol: $("#classPriceCol")
         , $firstClassPrice: $("#firstClassPrice")
     },
 

@@ -3,7 +3,7 @@ class ModalController
     constructor()
     {
         let route = new RouteView();
-        let date = new DateView();
+        let date = new DateView(() => route.price); // always update
         let traveller = new TravellerView();
         let confirm = new ConfirmView(route, date, traveller, id => this.editCallback(id)); // keep context
         this.views = [route, date, traveller, confirm];
