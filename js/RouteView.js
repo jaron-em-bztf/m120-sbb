@@ -16,13 +16,15 @@ class RouteView extends AbstractView
     validate()
     {
         let valid = true;
-        if (this.template.$from.val().length == 0) {
+        let from = this.template.$from.val();
+        let to = this.template.$to.val();
+        if (from.length == 0 || !TestDataSet.contains(from)) {
             this.template.$from.addClass("errorHighlight");
             valid = false;
         } else
             this.template.$from.removeClass("errorHighlight");
 
-        if (this.template.$to.val().length == 0) {
+        if (to.length == 0 || !TestDataSet.contains(to) || to.toLowerCase() == from.toLowerCase()) {
             this.template.$to.addClass("errorHighlight");
             valid = false;
         } else
@@ -38,13 +40,13 @@ class RouteView extends AbstractView
 
     initConvenience()
     {
-      this.template.$from.on('keyup', e => {
+      this.template.$from.keyup(e => {
         if (e.keyCode === 13 || e.keyCode === 9) { // Enter or tab
             ModalTemplates.routeTemplate.$to.focus();
         }
       });
 
-      this.template.$to.on('keyup', e => {
+      this.template.$to.keyup(e => {
         if (e.keyCode === 13 || e.keyCode === 9) { // Enter or tab
             Modal.$nextBtn.focus();
         }

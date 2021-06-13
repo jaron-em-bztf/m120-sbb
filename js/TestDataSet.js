@@ -9,4 +9,10 @@ class TestDataSet
       this.stations.forEach(e => ret.push(e["name"]));
       return ret;
     }
+
+    static contains(key)
+    {
+      let regex = new RegExp(this.stationNames().join("|"), "i"); // arbitrary delim
+      return regex.test(key);
+    }
 }
