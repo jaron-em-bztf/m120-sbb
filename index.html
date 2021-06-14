@@ -12,6 +12,7 @@
   <script src="libs/bootstrap/js/bootstrap.min.js"></script>
   <script src="libs/bootstrap/js/bootstrap-datepicker.min.js"></script>
   <script src="libs/typeahead.jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
 </head>
 
 <body class="text-center">  
@@ -127,6 +128,33 @@
                 </div>
               </div>
             </div>
+
+            <!-- Connections -->
+            <div id="connectionTemplate" class="d-none">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Abfahrt</th>
+                    <th scope="col">Ankunft</th>
+                    <th scope="col">Preis</th>
+                  </tr>
+                </thead>
+                <tbody id="connectionBody">
+
+                </tbody>
+                </table>
+            </div>
+            
+            <!-- connection render template -->
+            <template id="connectionsRenderTemplate">
+              {{#connections}}
+              <tr>
+                <td>{{departure}}</td>
+                <td>{{arrival}}</td>
+                <td>{{diff}}</td>
+              </tr>
+              {{/connections}}
+            </template>
             
             <!-- Traveller -->
             <div id="travellerTemplate" class="d-none">
@@ -242,6 +270,7 @@
     <script src="js/views/DateView.js"></script>
     <script src="js/views/TravellerView.js"></script>
     <script src="js/views/ConfirmView.js"></script>
+    <script src="js/views/ConnectionView.js"></script>
     <script src="js/ModalController.js"></script>
     <script src="js/main.js"></script>
   </body>

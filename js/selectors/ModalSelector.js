@@ -46,6 +46,7 @@ let ModalTemplates =
         id: 3
         , title: "Reisende/r"
         , $body : $("#travellerTemplate")
+
         , $firstName : $("#firstName")
         , $lastName : $("#lastName")
         , $birthDay : $("#birthDay")
@@ -64,5 +65,15 @@ let ModalTemplates =
         , $body : $("#confirmTemplate")
         , $routeSummary : $("#routeSummary")
         , $finalPrice : $("#finalPrice")
+    },
+
+    connectionTemplate:
+    {
+        id: 5
+        , title: "Verbindung"
+
+        , $body: $("#connectionTemplate")
+        , $connectionsTemplate: $("#connectionsRenderTemplate")
+        , $connectionTable: $("#connectionBody")
     }
 }

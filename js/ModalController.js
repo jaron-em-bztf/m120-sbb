@@ -5,9 +5,10 @@ class ModalController
         let route = new RouteView();
         let date = new DateView(() => route.price); // always update
         let traveller = new TravellerView();
+        let connection = new ConnectionView();
         let confirm = new ConfirmView(route, date, traveller, id => this.editCallback(id)); // keep context
-        this.views = [route, date, traveller, confirm];
-        this.currentView = -1;
+        this.views = [route, date, connection, traveller,confirm];
+        this.currentView = 1;
         this.editInProgress = false;
 
         Modal.$prevBtn.addClass("d-none");
@@ -24,7 +25,7 @@ class ModalController
     show()
     {
         Modal.bsMain.show();
-        if (this.currentView == -1)
+        if (this.currentView == 1) // TODO change to -1
             this.nextView(true);
     }
     
