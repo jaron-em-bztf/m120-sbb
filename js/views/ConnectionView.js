@@ -7,6 +7,8 @@ class ConnectionView extends AbstractView
         this.to = to;
         this.date = date;
         this.lastTime = "";
+        this.timeoutVal = this.lastTime; // wait before refetching
+        this.lastTimeoutId = -1;
         this.timePicker = this.template.$timePicker.timepicker({
             minuteStep: 1,
             template: 'modal',
@@ -16,12 +18,17 @@ class ConnectionView extends AbstractView
         });
         this.template.$timePicker.val(this.formatTimestamp(Date.now(), false));
         this.template.$timePicker.change(() => {
-            // arrow keys also trigger change event
-            let t = this.template.$timePicker.val();
-            if (this.lastTime == t) 
-                return;
-            this.lastTime = t;
-            this.reFetch();
+            this.timeoutVal = this.template.$timePicker.val();
+            clearTimeout(this.lastTimeoutId);
+            this.lastTimeoutId = setTimeout(() => { // wait before refetching
+                let t = this.template.$timePicker.val()
+                // arrow keys also trigger change event
+                if (this.lastTime == t) 
+                    return;
+                this.lastTime = t;
+                this.reFetch();
+            }, 500);
+            
         });
     }
 
@@ -38,8 +45,12 @@ class ConnectionView extends AbstractView
                 return;
             let departure = this.formatTimestamp(con["from"]["departureTimestamp"]);
             let arrival = this.formatTimestamp(con["to"]["arrivalTimestamp"]);
+            let diff = this.formatTimestamp(
+                (parseInt(con["to"]["arrivalTimestamp"]) -
+                parseInt(con["from"]["departureTimestamp"])) * 1000
+                );
 
-            ret["connections"].push({departure: departure, arrival: arrival});
+            ret["connections"].push({departure: departure, arrival: arrival, diff: diff});
         });
 
         return ret;
