@@ -41,16 +41,16 @@ class ConnectionView extends AbstractView
     {
         let ret = {connections: []};
         data.connections.forEach(con => {
-            if (ret["connections"].length > 4) // Max 5 connections
+            if (ret["connections"].length > 7) // Max 8 connections
                 return;
-            let departure = this.formatTimestamp(con["from"]["departureTimestamp"]);
-            let arrival = this.formatTimestamp(con["to"]["arrivalTimestamp"]);
-            let diff = this.formatTimestamp(
-                (parseInt(con["to"]["arrivalTimestamp"]) -
-                parseInt(con["from"]["departureTimestamp"])) * 1000
-                );
+            let departure = parseInt(con["from"]["departureTimestamp"]) * 1000;
+            let arrival = parseInt(con["to"]["arrivalTimestamp"]) * 1000;
 
-            ret["connections"].push({departure: departure, arrival: arrival, diff: diff});
+            ret["connections"].push({
+                departure: this.formatTimestamp(departure), 
+                arrival: this.formatTimestamp(arrival), 
+                diff: this.timeDiff(departure, arrival)
+            });
         });
 
         return ret;
@@ -58,7 +58,7 @@ class ConnectionView extends AbstractView
 
     formatTimestamp(t, withSeconds = true)
     {
-        let date = new Date(t *= 1000);
+        let date = new Date(t);
         let hours = date.getHours();
         let minutes = "0" + date.getMinutes();
         if (withSeconds) {
@@ -66,6 +66,16 @@ class ConnectionView extends AbstractView
             return (hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2));
         }
 
+        return (hours + ':' + minutes.substr(-2));
+    }
+
+    timeDiff(tStart, tEnd)
+    {
+        let secs = (tEnd - tStart) / 1000;
+        let minutes = secs / 60;
+        let hours = Math.floor(minutes / 60);
+        minutes %= 60;
+        minutes = "0" + minutes;
         return (hours + ':' + minutes.substr(-2));
     }
 
