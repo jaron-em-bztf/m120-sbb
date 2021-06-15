@@ -17,15 +17,17 @@ class ConnectionView extends AbstractView
             showMeridian: false,
             defaultTime: false
         });
-        this.template.$timePicker.val(this.formatTimestamp(Date.now(), false));
+        this.template.$timePicker.val(this.formatTimestamp(Date.now()));
         this.template.$timePicker.change(() => {
             this.timeoutVal = this.template.$timePicker.val();
             clearTimeout(this.lastTimeoutId);
             this.lastTimeoutId = setTimeout(() => { // wait before refetching
-                let t = this.template.$timePicker.val()
+                let t = this.template.$timePicker.val();
                 // arrow keys also trigger change event
                 if (this.lastTime == t) 
                     return;
+                $("tr").removeClass("clicked");
+                this.timeValues = {};
                 this.lastTime = t;
                 this.reFetch();
             }, 500);
@@ -41,6 +43,16 @@ class ConnectionView extends AbstractView
     values()
     {
         return this.timeValues;
+    }
+
+    validate()
+    {
+        if (jQuery.isEmptyObject(this.timeValues)) {
+            this.template.$connectionTable.addClass("errorHighlight");
+            return false;
+        }
+
+        return true;
     }
 
     formatData(data)
@@ -62,16 +74,11 @@ class ConnectionView extends AbstractView
         return ret;
     }
 
-    formatTimestamp(t, withSeconds = true)
+    formatTimestamp(t)
     {
         let date = new Date(t);
         let hours = date.getHours();
         let minutes = "0" + date.getMinutes();
-        if (withSeconds) {
-            let seconds = "0" + date.getSeconds();        
-            return (hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2));
-        }
-
         return (hours + ':' + minutes.substr(-2));
     }
 

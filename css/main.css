@@ -99,6 +99,10 @@ tr.clickable:hover {
   background-color:#E4E4E4;
 }
 
+.clicked {
+  background-color: #ebf6ff;
+}
+
 .errorHighlight {
   border-color: red;
 }

@@ -101,7 +101,8 @@ class ModalController
 
     connectionCallback($t, departure, arrival)
     {
-        console.log($t)
         this.connection.timeValues = {Abfahrt: departure, Ankunft: arrival}
+        $("tr").removeClass("clicked");
+        $($t).addClass("clicked");
     };
 }
