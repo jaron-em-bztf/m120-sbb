@@ -115,6 +115,11 @@ body {
   text-align: left;
 }
 
+td.min {
+  width: 1%;
+  white-space: nowrap;
+}
+
 /* Typeahead style */
 .tt-input,
 .tt-hint {

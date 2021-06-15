@@ -1,10 +1,11 @@
 class ConfirmView extends AbstractView
 {
-    constructor(routeView, dateView, travellerView, editCallback)
+    constructor(routeView, dateView, connectionView, travellerView, editCallback)
     {
         super(ModalTemplates.confirmTemplate);
         this.routeView = routeView;
         this.dateView = dateView;
+        this.connectionView = connectionView;
         this.travellerView = travellerView;
         this.editCallback = editCallback
     }
@@ -19,6 +20,7 @@ class ConfirmView extends AbstractView
     {
         this.insertList(this.routeView.id, this.routeView.title, this.routeView.values());
         this.insertList(this.dateView.id, this.dateView.title, this.dateView.values());
+        this.insertList(this.connectionView.id, this.connectionView.title, this.connectionView.values());
         this.insertList(this.travellerView.id, this.travellerView.title, this.travellerView.values());
         this.updatePrice();
     }

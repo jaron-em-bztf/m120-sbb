@@ -5,17 +5,13 @@ class ModalController
         let route = new RouteView();
         let date = new DateView(() => route.price); // always update
         let traveller = new TravellerView();
-        let connection = new ConnectionView(
-            () => route.getFrom(),
-            () => route.getTo(),
-            () => date.getDate()
-        );
-        let confirm = new ConfirmView(route, date, traveller, id => this.editCallback(id)); // keep context
+        let connection = new ConnectionView(() => route.getFrom(), () => route.getTo(), () => date.getDate());
+        let confirm = new ConfirmView(route, date, connection, traveller, id => this.editCallback(id)); // keep context
         this.views = [route, date, connection, traveller,confirm];
+        this.connectionCallback = (departure, arrival) => connection.timeValues = {Abfahrt: departure, Ankunft: arrival};
         this.currentView = -1;
         this.editInProgress = false;
 
-        Modal.$prevBtn.addClass("d-none");
         Modal.$nextBtn.click(() => {
             if (this.editInProgress)
                 this.finishEdit();
@@ -29,7 +25,7 @@ class ModalController
     show()
     {
         Modal.bsMain.show();
-        if (this.currentView == -1) // TODO change to -1
+        if (this.currentView == -1)
             this.nextView(true);
     }
     
@@ -103,4 +99,6 @@ class ModalController
             this.switchToView(view);
         });
     }
+
+    
 }

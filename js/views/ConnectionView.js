@@ -3,6 +3,7 @@ class ConnectionView extends AbstractView
     constructor(from, to, date)
     {
         super(ModalTemplates.connectionTemplate);
+        this.timeValues = {};
         this.from = from;
         this.to = to;
         this.date = date;
@@ -35,6 +36,11 @@ class ConnectionView extends AbstractView
     onView()
     {
         this.reFetch();
+    }
+
+    values()
+    {
+        return this.timeValues;
     }
 
     formatData(data)
@@ -81,10 +87,10 @@ class ConnectionView extends AbstractView
 
     renderTable(data)
     {
-        this.template.$connectionTable.fadeOut(250);
+        this.template.$connectionTable.fadeOut(50);
         let render = Mustache.render(this.template.$connectionsTemplate.html(), data);
         this.template.$connectionTable.html(render);
-        this.template.$connectionTable.fadeIn(250);
+        this.template.$connectionTable.fadeIn(50);
     }
 
     reFetch()

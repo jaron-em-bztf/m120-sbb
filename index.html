@@ -142,6 +142,7 @@
                     <th scope="col">Abfahrt</th>
                     <th scope="col">Ankunft</th>
                     <th scope="col">Zeit</th>
+                    <th scope="col"> </th>
                   </tr>
                 </thead>
                 <tbody id="connectionBody">
@@ -157,6 +158,9 @@
                 <td>{{departure}}</td>
                 <td>{{arrival}}</td>
                 <td>{{diff}}</td>
+                <td class="min"> 
+                  <button onclick="setConnection('{{departure}}', '{{arrival}}')" class="btn btn-secondary">Wählen</button>
+                </td>
               </tr>
               {{/connections}}
             </template>
@@ -238,7 +242,7 @@
             
           </div>
           <div class="modal-footer">
-            <button type="button" id="previous" class="btn btn-primary mr-auto">Zurück</button>
+            <button type="button" id="previous" class="btn btn-primary mr-auto d-none">Zurück</button>
             <button type="button" id="next" class="btn btn-primary">Weiter</button>
           </div>
         </div>
