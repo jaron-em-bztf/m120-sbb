@@ -12,7 +12,7 @@ function openModal()
     this.modal.show();
 }
 
-function setConnection(departure, arrival)
+function setConnection($target, departure, arrival)
 {
-    this.modal.connectionCallback(departure, arrival);
+    this.modal.connectionCallback($target, departure, arrival);
 }

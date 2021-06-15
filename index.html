@@ -154,13 +154,10 @@
             <!-- connection render template -->
             <template id="connectionsRenderTemplate">
               {{#connections}}
-              <tr>
+              <tr class="clickable" onclick="setConnection(this, '{{departure}}', '{{arrival}}')">
                 <td>{{departure}}</td>
                 <td>{{arrival}}</td>
                 <td>{{diff}}</td>
-                <td class="min"> 
-                  <button onclick="setConnection('{{departure}}', '{{arrival}}')" class="btn btn-secondary">Wählen</button>
-                </td>
               </tr>
               {{/connections}}
             </template>

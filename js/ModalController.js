@@ -2,13 +2,12 @@ class ModalController
 {
     constructor()
     {
-        let route = new RouteView();
-        let date = new DateView(() => route.price); // always update
-        let traveller = new TravellerView();
-        let connection = new ConnectionView(() => route.getFrom(), () => route.getTo(), () => date.getDate());
-        let confirm = new ConfirmView(route, date, connection, traveller, id => this.editCallback(id)); // keep context
-        this.views = [route, date, connection, traveller,confirm];
-        this.connectionCallback = (departure, arrival) => connection.timeValues = {Abfahrt: departure, Ankunft: arrival};
+        this.route = new RouteView();
+        this.date = new DateView(() => this.route.price); // always update
+        this.traveller = new TravellerView();
+        this.connection = new ConnectionView(() => this.route.getFrom(), () => this.route.getTo(), () => this.date.getDate());
+        this.confirm = new ConfirmView(this.route, this.date, this.connection, this.traveller, id => this.editCallback(id)); // keep context
+        this.views = [this.route, this.date, this.connection, this.traveller,this.confirm];
         this.currentView = -1;
         this.editInProgress = false;
 
@@ -100,5 +99,9 @@ class ModalController
         });
     }
 
-    
+    connectionCallback($t, departure, arrival)
+    {
+        console.log($t)
+        this.connection.timeValues = {Abfahrt: departure, Ankunft: arrival}
+    };
 }
