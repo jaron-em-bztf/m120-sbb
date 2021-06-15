@@ -15,6 +15,11 @@ class DateView extends AbstractView
         this.updatePrice();
     }
 
+    getDate()
+    {
+        this.template.$datePicker.val().split('/').reverse().join('-'); // YYYY-MM-DD format
+    }
+
     validate()
     {
         let valid = true;

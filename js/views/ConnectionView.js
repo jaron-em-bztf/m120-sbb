@@ -1,24 +1,33 @@
 class ConnectionView extends AbstractView
 {
-    constructor(from, to, date, time)
+    constructor(from, to, date)
     {
         super(ModalTemplates.connectionTemplate);
         this.from = from;
         this.to = to;
         this.date = date;
-        this.time = time;
+        this.lastTime = "";
+        this.timePicker = this.template.$timePicker.timepicker({
+            minuteStep: 1,
+            template: 'modal',
+            appendWidgetTo: 'body',
+            showMeridian: false,
+            defaultTime: false
+        });
+        this.template.$timePicker.val(this.formatTimestamp(Date.now(), false));
+        this.template.$timePicker.change(() => {
+            // arrow keys also trigger change event
+            let t = this.template.$timePicker.val();
+            if (this.lastTime == t) 
+                return;
+            this.lastTime = t;
+            this.reFetch();
+        });
     }
 
     onView()
     {
-        $.get("http://transport.opendata.ch/v1/connections", 
-                    {from: "Weinfelden", to: "Frauenfeld", 
-                    date: "2021-06-14", time: "13:10"}, (data, status) => {
-            if (status != "success")
-                return;
-            console.log(data);
-            this.renderTable(this.formatData(data));
-        });
+        this.reFetch();
     }
 
     formatData(data)
@@ -36,19 +45,39 @@ class ConnectionView extends AbstractView
         return ret;
     }
 
-    formatTimestamp(t)
+    formatTimestamp(t, withSeconds = true)
     {
         let date = new Date(t *= 1000);
         let hours = date.getHours();
         let minutes = "0" + date.getMinutes();
-        let seconds = "0" + date.getSeconds();        
-        return (hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2));
+        if (withSeconds) {
+            let seconds = "0" + date.getSeconds();        
+            return (hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2));
+        }
+
+        return (hours + ':' + minutes.substr(-2));
     }
 
     renderTable(data)
     {
-        console.log(data);
+        this.template.$connectionTable.fadeOut(250);
         let render = Mustache.render(this.template.$connectionsTemplate.html(), data);
         this.template.$connectionTable.html(render);
+        this.template.$connectionTable.fadeIn(250);
+    }
+
+    reFetch()
+    {
+        $.get("http://transport.opendata.ch/v1/connections", {
+                    from: this.from(), 
+                    to: this.to(), 
+                    date: this.date(), 
+                    time: this.template.$timePicker.val()
+                    }, 
+                    (data, status) => {
+            if (status != "success")
+                return;
+            this.renderTable(this.formatData(data));
+        });
     }
 }

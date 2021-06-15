@@ -17,6 +17,16 @@ class RouteView extends AbstractView
       setTimeout(() => ModalTemplates.routeTemplate.$from.focus(), 500); 
     }
 
+    getFrom()
+    {
+      return ModalTemplates.routeTemplate.$from.val();
+    }
+
+    getTo()
+    {
+      return ModalTemplates.routeTemplate.$to.val();
+    }
+
     validate()
     {
         let valid = true;

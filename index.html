@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="libs/bootstrap/css/bootstrap-datepicker3.css" rel="stylesheet">
+  <link href="libs/bootstrap/css/bootstrap-timepicker.min.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <title>m120 SBB Billetautomat</title>
   
@@ -12,6 +13,7 @@
   <script src="libs/bootstrap/js/bootstrap.min.js"></script>
   <script src="libs/bootstrap/js/bootstrap-datepicker.min.js"></script>
   <script src="libs/typeahead.jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap-timepicker.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
 </head>
 
@@ -132,6 +134,12 @@
             <!-- Connections -->
             <div id="connectionTemplate" class="d-none">
               <table class="table table-striped">
+
+                <div class="input-group bootstrap-timepicker timepicker">
+                  <input id="timepicker" type="text" class="form-control input-small" placeholder="Abfahrtszeit">
+                </div>
+
+
                 <thead>
                   <tr>
                     <th scope="col">Abfahrt</th>

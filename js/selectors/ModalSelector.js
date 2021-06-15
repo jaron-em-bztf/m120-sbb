@@ -75,5 +75,6 @@ let ModalTemplates =
         , $body: $("#connectionTemplate")
         , $connectionsTemplate: $("#connectionsRenderTemplate")
         , $connectionTable: $("#connectionBody")
+        , $timePicker: $("#timepicker")
     }
 }
